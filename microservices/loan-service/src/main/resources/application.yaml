@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+catalog:
+  url: ${CATALOG_URL:http://localhost:8080}
+  timeout-seconds: 2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+      base-path: /
+      path-mapping:
+        prometheus: metrics
+
+  endpoint:
+    health:
+      show-details: always

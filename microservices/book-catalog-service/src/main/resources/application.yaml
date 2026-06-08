@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+catalog:
+  artificial-delay-ms: ${ARTIFICIAL_DELAY_MS:0}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+      base-path: /
+      path-mapping:
+        prometheus: metrics
+
+  endpoint:
+    health:
+      show-details: always

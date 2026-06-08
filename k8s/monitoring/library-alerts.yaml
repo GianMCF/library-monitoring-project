@@ -1,0 +1,53 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+
+metadata:
+  name: library-alerts
+  namespace: library-system
+
+spec:
+  groups:
+
+    - name: library.rules
+
+      rules:
+
+        - alert: CatalogServiceDown
+
+          expr: up{service="book-catalog-service"} == 0
+
+          for: 1m
+
+          annotations:
+            summary: "Catalog Service caído"
+            description: "El servicio de catálogo no responde"
+
+        - alert: LoanServiceDown
+
+          expr: up{service="loan-service"} == 0
+
+          for: 1m
+
+          annotations:
+            summary: "Loan Service caído"
+            description: "El servicio de préstamos no responde"
+
+        - alert: HighCatalogLatency
+
+          expr: catalog_response_delay_ms > 1000
+
+          for: 30s
+
+          annotations:
+            summary: "Latencia elevada"
+            description: "El catálogo responde demasiado lento"
+
+        - alert: TooManyLoanFailures
+
+          expr: increase(loan_failures_total[5m]) > 5
+
+          for: 1m
+
+          annotations:
+            summary: "Errores de préstamos"
+            description: "Se detectan demasiados préstamos fallidos"

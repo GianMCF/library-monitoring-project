@@ -1,0 +1,20 @@
+grafana:
+  adminPassword: ValleGrande2026!
+
+  service:
+    type: NodePort
+
+prometheus:
+  service:
+    type: NodePort
+
+  prometheusSpec:
+    serviceMonitorSelector: {}
+
+    serviceMonitorNamespaceSelector: {}
+
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+    ruleSelector: {}
+
+    ruleNamespaceSelector: {}

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: book-catalog-service
+  namespace: library-system
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: book-catalog-service
+
+  template:
+
+    metadata:
+      labels:
+        app: book-catalog-service
+
+    spec:
+
+      containers:
+
+        - name: book-catalog-service
+
+          image: book-catalog-service:1.0
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: ARTIFICIAL_DELAY_MS
+              value: "5000"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+
+            initialDelaySeconds: 15
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+          resources:
+
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

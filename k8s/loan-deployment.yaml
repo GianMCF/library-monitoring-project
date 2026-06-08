@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: loan-service
+  namespace: library-system
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: loan-service
+
+  template:
+
+    metadata:
+      labels:
+        app: loan-service
+
+    spec:
+
+      containers:
+
+        - name: loan-service
+
+          image: loan-service:1.0
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8081
+
+          env:
+
+            - name: CATALOG_URL
+              value: "http://book-catalog-service:8080"
+
+            - name: CATALOG_TIMEOUT_SECONDS
+              value: "2"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+
+            initialDelaySeconds: 15
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+          resources:
+
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

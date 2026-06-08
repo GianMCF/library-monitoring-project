@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: catalog-servicemonitor
+  namespace: library-system
+
+spec:
+  selector:
+    matchLabels:
+      app: book-catalog-service
+
+  namespaceSelector:
+    matchNames:
+      - library-system
+
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+      scrapeTimeout: 10s
