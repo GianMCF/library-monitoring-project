@@ -83,9 +83,24 @@ helm upgrade --install monitoring \
   -f k8s/monitoring/values.yaml
 
 echo ""
-echo "[8/9] Aplicando manifiestos Kubernetes..."
+echo "[8/9] Creando namespace..."
 
-kubectl apply -f k8s/
+kubectl apply -f k8s/namespace.yaml
+
+until kubectl get namespace library-system >/dev/null 2>&1
+do
+  echo "Esperando namespace..."
+  sleep 2
+done
+
+echo "Namespace listo."
+
+kubectl apply -f k8s/catalog-deployment.yaml
+kubectl apply -f k8s/catalog-service.yaml
+kubectl apply -f k8s/loan-deployment.yaml
+kubectl apply -f k8s/loan-service.yaml
+
+echo "Recursos Listos."
 
 echo ""
 echo "[9/9] Aplicando monitoreo..."
