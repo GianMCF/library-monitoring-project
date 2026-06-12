@@ -379,9 +379,7 @@ Las métricas de negocio permiten detectar problemas antes de que generen pérdi
 
 ### Evidencia
 
-![](./pics/casu-3.png)
-
-### Vista desde el panel del dashboard
+#### Vista desde el panel del dashboard
 ![](./pics/casu3.png)
 
 ---
@@ -403,7 +401,7 @@ UP
 
 ### Evidencia
 
-[CAPTURA]
+![](./pics/prome.png)
 
 ---
 
@@ -420,7 +418,9 @@ Dashboard compuesto por:
 
 ### Evidencia
 
-[CAPTURA]
+![](./pics/dahboard.png)
+
+![](./pics/dahboard-2.png)
 
 ---
 
@@ -429,7 +429,7 @@ Dashboard compuesto por:
 Comando:
 
 ```bash
-kubectl get pods -A
+kubectl get all -A
 ```
 
 Todos los pods se encontraron en estado:
@@ -440,7 +440,7 @@ Running
 
 ### Evidencia
 
-[CAPTURA]
+![](./pics/pods.png)
 
 ---
 
