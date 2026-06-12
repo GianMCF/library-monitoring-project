@@ -1,7 +1,7 @@
 # Informe Técnico – Monitoreo de Microservicios Java en Kubernetes
 
 **Curso:** Kubernetes con Prometheus & Grafana
-**Alumno:** [TU NOMBRE]
+**Alumno:** Gianmarco Castillo Flores
 **Proyecto:** Biblioteca Digital Monitoreada con Kubernetes
 **Fecha:** Junio 2026
 
@@ -262,8 +262,10 @@ Los probes permiten detectar fallos automáticamente y recuperar servicios sin i
 
 ### Evidencia
 
-[CAPTURA]
+![](./pics/casu-1.png)
 
+### Vista desde el panel del dashboard
+![](./pics/casu1-1-1.png)
 ---
 
 ## Casuística 2 — Servicio Lento
@@ -320,7 +322,10 @@ La latencia se propaga entre servicios y afecta toda la cadena de dependencias.
 
 ### Evidencia
 
-[CAPTURA]
+### Evidencia
+
+#### Vista desde el panel del dashboard
+![](./pics/dahboard-2.png)
 
 ---
 
@@ -374,7 +379,10 @@ Las métricas de negocio permiten detectar problemas antes de que generen pérdi
 
 ### Evidencia
 
-[CAPTURA]
+![](./pics/casu-3.png)
+
+### Vista desde el panel del dashboard
+![](./pics/casu3.png)
 
 ---
 
